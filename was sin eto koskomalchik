@@ -1,0 +1,5 @@
+BR2_arm=y
+BR2_cortex_a7=y
+BR2_ARM_EABIHF=y
+BR2_TARGET_UBOOT_BOARD_DEFCONFIG="Ippo_q8h_a23_defconfig"
+BR2_PACKAGE_MPLAYER=y
