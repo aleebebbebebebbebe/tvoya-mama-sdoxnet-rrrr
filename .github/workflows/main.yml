@@ -1,0 +1,20 @@
+name: Build My Player
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y build-essential libncurses5-dev rsync bc u-boot-tools
+    - name: Download Buildroot
+      run: wget https://buildroot.org && tar -xzf buildroot-2023.02.tar.gz
+    - name: Copy config
+      run: cp "was sin eto koskomalchik" buildroot-2023.02/.config
+    - name: Compile Image
+      run: cd buildroot-2023.02 && make olddefconfig && make
+    - name: Upload Result
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-player-image
+        path: buildroot-2023.02/output/images/sdcard.img
